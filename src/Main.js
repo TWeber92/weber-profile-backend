@@ -14,7 +14,7 @@ export class Main {
       env.OORT_BUCKET_2,
     );
     this.projectController = this.#buildProjectController();
-    this.limitController = this.#buildRateLimitController()
+    this.limitController = this.#buildRateLimitController();
   }
   #oort;
 
@@ -23,9 +23,9 @@ export class Main {
     const service = new ProjectService(repo);
     return new ProjectController(service);
   }
-  #buildRateLimitController(){
+  #buildRateLimitController() {
     const repo = new RateLimitRepository(this.#oort);
     const service = new RateLimitService(repo);
-    return new RateLimitController(service)
+    return new RateLimitController(service);
   }
 }

@@ -11,6 +11,7 @@ export const handler = async (event, env) => {
     params: { projectName },
     path: event.path,
     method: event.httpMethod,
+  headers: event.headers,
   };
   const res = {
     status: (code) => {
