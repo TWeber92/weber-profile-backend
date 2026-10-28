@@ -1,5 +1,4 @@
 import { Main } from "../../src/Main";
-import { ParameterError } from "../../src/weber-profile-exception/WeberProfileError";
 
 export const handler = async (event, env) => {
   let responseStatus = 200;
@@ -11,7 +10,7 @@ export const handler = async (event, env) => {
     params: { projectName },
     path: event.path,
     method: event.httpMethod,
-  headers: event.headers,
+    headers: event.headers,
   };
   const res = {
     status: (code) => {
@@ -23,8 +22,6 @@ export const handler = async (event, env) => {
       };
     },
   };
-  if (!projectName)
-    throw new ParameterError("projectName parameter is required");
   await main.limitController.checkIp(req, res);
   await controller.getProfileProjectByName(req, res);
   return {
