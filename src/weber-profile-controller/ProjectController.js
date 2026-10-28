@@ -10,7 +10,7 @@ export class ProjectController extends APIController {
 
   async getProfileProjectByName(req, res) {
     return super.GET(req, res, "getProfileProjectByName", async () => {
-      const { projectName } = req.body;
+      const { projectName } = req.params;
       const project = await this.#service.getProfileProjectByName(projectName);
       return { status: 200, data: project };
     });
