@@ -1,5 +1,21 @@
 {
+  "name": "weber-profile-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "weber-profile-proxy/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test:unit": "node --import=extensionless/register --test",
+    "test:scheduled": "wrangler dev --test-scheduled"
+  },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1158.0",
+    "fast-xml-parser": "^4.5.7",
     "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "extensionless": "^2.0.6",
+    "wrangler": "^4.154.0"
   }
 }

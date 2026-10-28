@@ -8,4 +8,7 @@ export class ProjectRepository {
   async putSchema(key, data) {
     return await this.#oort.putObject(key, data);
   }
+  async getSchema(key) {
+    return await this.#oort.getObject(key);
+  }
 }
