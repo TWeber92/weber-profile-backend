@@ -5,7 +5,7 @@ import {
   DeleteObjectCommand,
 } from "@aws-sdk/client-s3";
 import { XMLParser } from "fast-xml-parser";
-import { OortError } from "../coin-collection-exception/CoinCollectionError";
+import { OortError } from "../weber-profile-exception/WeberProfileError";
 export class OORTStorageClient {
   constructor(accessKey, secretKey, bucket) {
     this.client = new S3Client({

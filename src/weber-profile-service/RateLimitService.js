@@ -1,4 +1,4 @@
-import { RateLimitError } from "../coin-collection-exception/CoinCollectionError";
+import { RateLimitError } from "../weber-profile-exception/WeberProfileError";
 
 export class RateLimitService {
   constructor(repo) {
