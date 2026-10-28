@@ -2,6 +2,7 @@ import { APIController } from "./APIController";
 
 export class ProjectController extends APIController {
   constructor(service) {
+    super();
     this.#service = service;
   }
 
