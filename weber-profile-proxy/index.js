@@ -32,7 +32,7 @@ export default {
 
     const routerMap = {
       "GET:/api/v1/project": async () => await getProject(event, env),
-      "PUT:/api/v1/project": async () => await postProject(event, env),
+      "POST:/api/v1/project": async () => await postProject(event, env),
       "PUT:/api/v1/reset": async () => {
         const client = await resetDatabase(env);
         if (client) await client.end();

@@ -1,0 +1,1 @@
+{"projectName":"spring-security","schemaData":[{"columns":["Customer ID","Email","Name","Date of Birth"],"rows":[{"customer_id":1,"email_id":"charles@example.com","name":"Charles Smith","date_of_birth":"1985-04-12"},{"customer_id":2,"email_id":"jane@example.com","name":"Jane Doe","date_of_birth":"1990-07-23"}]}]}
