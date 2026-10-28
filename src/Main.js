@@ -26,6 +26,6 @@ export class Main {
   #buildRateLimitController(){
     const repo = new RateLimitRepository(this.#oort);
     const service = new RateLimitService(repo);
-    return RateLimitController(service)
+    return new RateLimitController(service)
   }
 }
