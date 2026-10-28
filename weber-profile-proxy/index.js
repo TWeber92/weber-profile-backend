@@ -1,4 +1,4 @@
-import { handler as putProject } from "./functions/putProject";
+import { handler as postProject } from "./functions/postProject";
 import { handler as getProject } from "./functions/getProject";
 import { handler as resetDatabase } from "./functions/reset";
 
@@ -32,7 +32,7 @@ export default {
 
     const routerMap = {
       "GET:/api/v1/project": async () => await getProject(event, env),
-      "PUT:/api/v1/project": async () => await putProject(event, env),
+      "PUT:/api/v1/project": async () => await postProject(event, env),
       "PUT:/api/v1/reset": async () => {
         const client = await resetDatabase(env);
         if (client) await client.end();

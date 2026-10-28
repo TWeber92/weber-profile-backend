@@ -1,0 +1,19 @@
+import { APIController } from "./APIController";
+
+export class RateLimitController extends APIController {
+  constructor(service) {
+    super();
+    this.#service = service;
+  }
+  #service;
+  async checkIp(req, res) {
+    return super.POST(req, res, "checkIp", async () => {
+      const ip =
+        req.headers["cf-connecting-ip"] ||
+        req.headers["local-connecting-ip"] ||
+        "unknown";
+      await this.#service.checkIp(ip);
+      return { status: 200, data: null };
+    });
+  }
+}

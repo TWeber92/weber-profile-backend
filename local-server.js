@@ -1,15 +1,11 @@
 import { createServer } from "node:https";
 import { readFileSync } from "node:fs";
-import worker from "./weber-profile-proxy/functions/index";
+import worker from "./weber-profile-proxy/index";
 
 const env = {
   OORT_ACCESS_KEY: process.env.OORT_ACCESS_KEY,
   OORT_SECRET_KEY: process.env.OORT_SECRET_KEY,
-  OORT_BUCKET: process.env.OORT_BUCKET,
-  PEPPER_KEY: process.env.PEPPER_KEY,
-  SERVER_KEY: process.env.SERVER_KEY,
-  EMAIL_ADMIN: process.env.EMAIL_ADMIN,
-  EMAIL_PASS: process.env.EMAIL_PASS,
+  OORT_BUCKET_2: process.env.OORT_BUCKET_2,
 };
 
 const PORT = 3000;
