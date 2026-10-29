@@ -33,5 +33,5 @@ INSERT INTO
   booking (customer_name, phone_no, booking_type, cab_no)
 VALUES
   ('Michel', 9867542341, 'Shared', 451678),
-  (1002,'Robert',8745316754,'Personal',567897),
-  (1003,'Peter',9645336766,'Shared',234987);
+  ('Robert',8745316754,'Personal',567897),
+  ('Peter',9645336766,'Shared',234987);
