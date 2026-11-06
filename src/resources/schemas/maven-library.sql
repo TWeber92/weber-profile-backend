@@ -34,7 +34,6 @@ INSERT INTO
 VALUES
   ('The Great Adventure', 'J.R.R. Tolkien', '2345678901', 1),
   ('Harry Potter', 'JK. Rowling', '1234567890', 2),
-  ('Harry Potter', 'JK. Rowling', '1234567890', 2),
   ('The Hound of the Baskervilles', 'Arthur Conan Doyle', '3456789012', 4),
   ('Foundation', 'Isaac Asimov', '4567890123', 5),
   ('Frankenstein', 'Mary Shelley', '5678901234', 6),
