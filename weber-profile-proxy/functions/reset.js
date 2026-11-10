@@ -10,6 +10,13 @@ export const handler = async (env) => {
     connectionString: env.HYPERDRIVE.connectionString,
     ssl: { rejectUnauthorized: false },
   });
+  
+  const makeEvent = (projectName) => ({
+    httpMethod: "PUT",
+    path: "/api/v1/project",
+    queryStringParameters: {},
+    body: JSON.stringify({ projectName }),
+  });
 
   await client.connect();
   console.log("Connected to Render DB for reset.");
@@ -33,10 +40,3 @@ export const handler = async (env) => {
   console.log("All schemas successfully reset and seeded.");
   return client;
 };
-
-const makeEvent = (projectName) => ({
-  httpMethod: "PUT",
-  path: "/api/v1/project",
-  queryStringParameters: {},
-  body: JSON.stringify({ projectName }),
-});

@@ -29,6 +29,8 @@ export class ProjectService {
   }
 
   async putProfileProject(projectName, tables) {
+    console.log(projectName, tables);
+    
     const key = `schemas/${projectName}.json`;
     const wrapped = Project.from(tables);
     await this.#repo.putSchema(key, wrapped);
