@@ -25,8 +25,7 @@ export const handler = async (event, env) => {
   await main.limitController.checkIp(req, res);
   await controller.getProfileProjectByName(req, res);
   return {
-    statusCode: responseStatus,
-    headers: { "Content-Type": "application/json" },
+    status: responseStatus,
     body: responseBody,
   };
 };

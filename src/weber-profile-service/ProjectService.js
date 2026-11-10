@@ -1,4 +1,6 @@
+import { Project } from "../weber-profile-entity/Project";
 import { ParameterError } from "../weber-profile-exception/WeberProfileError";
+import { Logger } from "../weber-profile-utilities/Logger";
 
 export class ProjectService {
   constructor(repo) {
@@ -7,19 +9,28 @@ export class ProjectService {
 
   #repo;
 
+  async getProfileProjectByName(projectName) {
+    if (!projectName)
+      Logger.throw(
+        new ParameterError("projectName is required."),
+        "ProjectService.getProfileProjectByName",
+      );
+    const key = `schemas/${projectName}.json`;
+    return await this.#repo.getSchema(key);
+  }
   async postProfileProject(projectName, schemaData) {
-    if (!projectName || !schemaData) {
-      throw new ParameterError("projectName and schemaData are required.");
-    }
+    if (!projectName || !schemaData)
+      Logger.throw(
+        new ParameterError("projectName and tables are required."),
+        "ProjectService.postProfileProject",
+      );
     const key = `schemas/${projectName}.json`;
     await this.#repo.putSchema(key, schemaData);
   }
 
-  async getProfileProjectByName(projectName) {
-    if (!projectName) {
-      throw new ParameterError("projectName is required.");
-    }
+  async putProfileProject(projectName, tables) {
     const key = `schemas/${projectName}.json`;
-    return await this.#repo.getSchema(key);
+    const wrapped = Project.from(tables);
+    await this.#repo.putSchema(key, wrapped);
   }
 }

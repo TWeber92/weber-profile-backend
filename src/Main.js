@@ -5,9 +5,11 @@ import { ProjectRepository } from "./weber-profile-repository/ProjectRepository"
 import { RateLimitRepository } from "./weber-profile-repository/RateLimitRepository";
 import { ProjectService } from "./weber-profile-service/ProjectService";
 import { RateLimitService } from "./weber-profile-service/RateLimitService";
+import { Logger } from "./weber-profile-utilities/Logger";
 
 export class Main {
   constructor(env) {
+    Logger.setup();
     this.#oort = new OORTStorageClient(
       env.OORT_ACCESS_KEY,
       env.OORT_SECRET_KEY,

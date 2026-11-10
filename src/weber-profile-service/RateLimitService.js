@@ -1,4 +1,5 @@
 import { RateLimitError } from "../weber-profile-exception/WeberProfileError";
+import { Logger } from "../weber-profile-utilities/Logger";
 
 export class RateLimitService {
   constructor(repo) {
@@ -12,7 +13,11 @@ export class RateLimitService {
     const record = await this.#repo.getRecord(ip);
     record.requests = record.requests.filter((t) => now - t < windowMs);
     if (record.requests.length >= limit)
-      throw new RateLimitError("Too many requests. Try again later.");
+      Logger.throw(
+        new RateLimitError("Too many requests. Try again later."),
+        "RateLimitService.checkIp",
+        { ip, count: record.requests.length, limit, windowMs },
+      );
     record.requests.push(now);
     await this.#repo.putRecord(ip, record);
   }

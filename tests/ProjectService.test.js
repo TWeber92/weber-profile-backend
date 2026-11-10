@@ -95,3 +95,22 @@ test("getProfileProjectByName rejects if projectName is missing", async () => {
     ParameterError
   );
 });
+
+test("putProfileProject wraps raw tables into schema object", async () => {
+  let storedKey = null;
+  let storedData = null;
+  const fakeOort = {
+    putObject: async (key, data) => { storedKey = key; storedData = data; return { key }; },
+  };
+  const service = new ProjectService(new ProjectRepository(fakeOort));
+
+  const tables = {
+    members: { columns: ["member_id", "first_name"], rows: [{ member_id: 1, first_name: "Tad" }] },
+  };
+  await service.putProfileProject("maven-library", tables);
+
+  assert.equal(storedKey, "schemas/maven-library.json");
+  assert.deepEqual(storedData, {
+    members: { name: "members", columns: ["member_id", "first_name"], rows: [{ member_id: 1, first_name: "Tad" }] },
+  });
+});

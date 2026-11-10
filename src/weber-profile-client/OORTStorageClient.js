@@ -6,6 +6,7 @@ import {
 } from "@aws-sdk/client-s3";
 import { XMLParser } from "fast-xml-parser";
 import { OortError } from "../weber-profile-exception/WeberProfileError";
+import { Logger } from "../weber-profile-utilities/Logger";
 export class OORTStorageClient {
   constructor(accessKey, secretKey, bucket) {
     this.client = new S3Client({
@@ -55,7 +56,11 @@ export class OORTStorageClient {
       const status = error.$metadata?.httpStatusCode;
       if (code) {
         const message = this.#getFriendlyMessage(code, operation, key);
-        throw new OortError(message, error, code, status);
+        Logger.throw(
+          new OortError(message, error, code, status),
+          "OORTStorageClient.OORT",
+          { key, code },
+        );
       }
       if (error.$responseBodyText) {
         const parser = new XMLParser();
@@ -67,12 +72,21 @@ export class OORTStorageClient {
           operation,
           parsedKey,
         );
-        throw new OortError(message, parsed.Error, parsedCode, status);
+        Logger.throw(
+          new OortError(message, parsed.Error, parsedCode, status),
+          "OORTStorageClient.OORT",
+          { key: parsedKey, code: parsedCode },
+        );
       }
-      throw new OortError(
-        `${operation} failed: ${error.message}`,
-        error,
-        status,
+      Logger.throw(
+        new OortError(
+          `${operation} failed: ${error.message}`,
+          error,
+          "NetworkFailure",
+          status,
+        ),
+        "OORTStorageClient.OORT",
+        { command: operation },
       );
     }
   }
