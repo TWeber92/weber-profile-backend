@@ -8,17 +8,17 @@ export const PROJECT_TABLES = Object.freeze({
   }),
 
   "authors-novels": Object.freeze({
-    schema: "authors_novels",
+    schema: "novels",
     tables: Object.freeze({
-      authors: Object.freeze(["id", "name"]),
-      novels: Object.freeze(["id", "title", "year", "auth_id"]),
+      author: Object.freeze(["id", "name"]),
+      novel: Object.freeze(["id", "title", "year", "auth_id"]),
     }),
   }),
 
   "spring-security": Object.freeze({
     schema: "security",
     tables: Object.freeze({
-      customers: Object.freeze([
+      customer: Object.freeze([
         "customer_id",
         "email_id",
         "name",
@@ -30,13 +30,13 @@ export const PROJECT_TABLES = Object.freeze({
   "cab-booking": Object.freeze({
     schema: "cab_booking",
     tables: Object.freeze({
-      cabs: Object.freeze([
+      cab: Object.freeze([
         "cab_no",
         "model_name",
         "driver_phone_no",
         "availability",
       ]),
-      bookings: Object.freeze([
+      booking: Object.freeze([
         "booking_id",
         "customer_name",
         "phone_no",
