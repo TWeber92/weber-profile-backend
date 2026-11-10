@@ -18,12 +18,9 @@ export class Project {
     };
   }
 
-  static from(data) {
-    return Object.fromEntries(
-      Object.entries(data).map(([name, { rows, columns }]) => [
-        name,
-        new Project({ name, rows, columns }).to(),
-      ]),
+  static from(tablesByName) {
+    return Object.entries(tablesByName).map(([name, { columns, rows }]) =>
+      new Project({ name, columns, rows }).to(),
     );
   }
 }
