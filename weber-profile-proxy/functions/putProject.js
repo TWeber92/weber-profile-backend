@@ -1,6 +1,7 @@
-import { Client } from "pg";
+import { Client, types } from "pg";
 import { PROJECT_TABLES } from "../../src/weber-profile-enum/ProjectTables";
 import { Main } from "../../src/Main";
+types.setTypeParser(1082, (v) => v);
 
 export const handler = async (event, env) => {
   let responseStatus = 200;
