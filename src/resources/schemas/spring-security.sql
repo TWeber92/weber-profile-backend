@@ -5,7 +5,7 @@ CREATE SCHEMA security;
 SET
   search_path TO security;
 
-CREATE TABLE customer (
+CREATE TABLE customers (
   customer_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   email_id VARCHAR(100) NOT NULL,
   name VARCHAR(100) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE customer (
 );
 
 INSERT INTO
-  customer (email_id, name, date_of_birth)
+  customers (email_id, name, date_of_birth)
 VALUES
   (
     'charles@example.com',
