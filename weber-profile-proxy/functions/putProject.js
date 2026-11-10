@@ -39,14 +39,14 @@ export const handler = async (event, env) => {
     }
     return tables;
   };
-  req.body.tables = await getData();
-  await controller.putProfileProject(req, res);
-  await client.end();
+  // req.body.tables = await getData();
+  // await controller.putProfileProject(req, res);
+  // await client.end();
 
-  // try {
-  //   req.body.tables = await getData();
-  //   await controller.putProfileProject(req, res);
-  // } finally {
-  //   await client.end().catch(() => {});
-  // }
+  try {
+    req.body.tables = await getData();
+    await controller.putProfileProject(req, res);
+  } finally {
+    await client.end();
+  }
 };
