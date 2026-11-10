@@ -7,7 +7,6 @@ export const handler = async (event, env) => {
   let responseBody;
   const controller = new Main(env).projectController;
   const { projectName } = JSON.parse(event.body || "{}");
-  console.log(projectName);
   const req = { body: { projectName } };
   const res = {
     status: (code) => {
@@ -20,8 +19,6 @@ export const handler = async (event, env) => {
     },
   };
   const cfg = PROJECT_TABLES[projectName];
-  console.log(cfg);
-
   if (!cfg) return { status: 400, body: { error: "Unknown projectName" } };
 
   const client = new Client({
@@ -39,14 +36,7 @@ export const handler = async (event, env) => {
     }
     return tables;
   };
-  // req.body.tables = await getData();
-  // await controller.putProfileProject(req, res);
-  // await client.end();
-
-  try {
-    req.body.tables = await getData();
-    await controller.putProfileProject(req, res);
-  } finally {
-    await client.end();
-  }
+  req.body.tables = await getData();
+  await controller.putProfileProject(req, res);
+  await client.end();
 };
