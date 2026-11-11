@@ -50,7 +50,6 @@ export class OORTStorageClient {
       const res = await this.client.send(command);
       return res;
     } catch (error) {
-      console.log("[OORT] raw response:", error.$responseBodyText);
       const operation = command.constructor.name;
       const code = error.Code;
       const key = error.Key;
