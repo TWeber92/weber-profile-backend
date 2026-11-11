@@ -7,8 +7,6 @@ export class ProjectController {
 
   async getProfileProjectByName(req, res) {
     const { projectName } = req.params;
-    console.log(projectName, 1);
-    
     const project = await this.#service.getProfileProjectByName(projectName);
     res.status(200).json({ data: project });
   }

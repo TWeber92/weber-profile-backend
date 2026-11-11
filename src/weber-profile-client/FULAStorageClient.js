@@ -21,8 +21,6 @@ export class FULAStorageClient {
     this.bucket = bucket || "myapp-main";
   }
   async getObject(key) {
-    console.log(key);
-    
     const command = new GetObjectCommand({ Bucket: this.bucket, Key: key });
     const res = await this.FULA(command);
     const text = await res.Body.transformToString();

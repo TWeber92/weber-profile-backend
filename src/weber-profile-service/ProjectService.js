@@ -15,8 +15,6 @@ export class ProjectService {
         new ParameterError("projectName is required."),
         "ProjectService.getProfileProjectByName",
       );
-      console.log(projectName);
-      
     const key = `schemas/${projectName}`;
     return await this.#repo.getSchema(key);
   }
@@ -31,8 +29,6 @@ export class ProjectService {
   }
 
   async putProfileProject(projectName, tables) {
-    console.log(projectName, tables);
-    
     const key = `schemas/${projectName}`;
     const wrapped = Project.from(tables);
     await this.#repo.putSchema(key, wrapped);
