@@ -24,12 +24,12 @@ export class ProjectService {
         new ParameterError("projectName and tables are required."),
         "ProjectService.postProfileProject",
       );
-    const key = `schemas/${projectName}`;
+    const key = `schemas/${projectName}.json`;
     await this.#repo.putSchema(key, schemaData);
   }
 
   async putProfileProject(projectName, tables) {
-    const key = `schemas/${projectName}`;
+    const key = `schemas/${projectName}.json`;
     const wrapped = Project.from(tables);
     await this.#repo.putSchema(key, wrapped);
   }
