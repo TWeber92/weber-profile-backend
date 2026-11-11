@@ -15,7 +15,7 @@ export class ProjectService {
         new ParameterError("projectName is required."),
         "ProjectService.getProfileProjectByName",
       );
-    const key = `schemas/${projectName}`;
+    const key = `schemas/${projectName}.json`;
     return await this.#repo.getSchema(key);
   }
   async postProfileProject(projectName, schemaData) {
