@@ -11,8 +11,7 @@ export class Main {
   constructor(env) {
     Logger.setup();
     this.#oort = new OORTStorageClient(
-      env.OORT_ACCESS_KEY,
-      env.OORT_SECRET_KEY,
+      env.FULA_JWT,
       env.OORT_BUCKET_2,
     );
     this.projectController = this.#buildProjectController();
