@@ -25,6 +25,7 @@ export const handler = async (event, env) => {
     },
   };
   await main.limitController.checkIp(req, res);
+  console.log(projectName);
   await controller.getProfileProjectByName(req, res);
   return {
     status: responseStatus,
