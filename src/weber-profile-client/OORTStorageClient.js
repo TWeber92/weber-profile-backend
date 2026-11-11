@@ -10,7 +10,7 @@ import { Logger } from "../weber-profile-utilities/Logger";
 export class OORTStorageClient {
   constructor(accessKey, secretKey, bucket) {
     this.client = new S3Client({
-      endpoint: "https://s3.cloud.fx.land",
+      endpoint: "https://s3-standard.oortech.com",
       region: "us-east-1",
       credentials: {
         accessKeyId: accessKey,
