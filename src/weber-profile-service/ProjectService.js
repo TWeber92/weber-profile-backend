@@ -31,6 +31,11 @@ export class ProjectService {
   async putProfileProject(projectName, tables) {
     const key = `schemas/${projectName}.json`;
     const wrapped = Project.from(tables);
+    console.log(wrapped);
+    console.log("typeof wrapped:", typeof wrapped);
+    console.log("isArray:", Array.isArray(wrapped));
+    console.log("wrapped[0]:", JSON.stringify(wrapped[0]).slice(0, 300));
+    console.log("stringified length:", JSON.stringify(wrapped).length);
     await this.#repo.putSchema(key, wrapped);
   }
 }
