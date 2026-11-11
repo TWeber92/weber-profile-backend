@@ -9,7 +9,7 @@ export class RateLimitController {
       req.headers["cf-connecting-ip"] ||
       req.headers["local-connecting-ip"] ||
       "unknown";
-    await this.#service.checkIp(ip);
-    res.status(200).json({ data: null });
+    const data = await this.#service.checkIp(ip);
+    res.status(200).json({ data });
   }
 }

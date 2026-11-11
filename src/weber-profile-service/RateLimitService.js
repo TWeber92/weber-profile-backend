@@ -20,5 +20,6 @@ export class RateLimitService {
       );
     record.requests.push(now);
     await this.#repo.putRecord(ip, record);
+    return null;
   }
 }
