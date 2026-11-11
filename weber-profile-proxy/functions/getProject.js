@@ -6,6 +6,8 @@ export const handler = async (event, env) => {
   const main = new Main(env);
   const controller = main.projectController;
   const projectName = event.queryStringParameters.projectName;
+  console.log(projectName);
+  
   const req = {
     params: { projectName },
     path: event.path,
