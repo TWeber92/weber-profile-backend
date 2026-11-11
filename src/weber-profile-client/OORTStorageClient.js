@@ -5,16 +5,16 @@ import {
   DeleteObjectCommand,
 } from "@aws-sdk/client-s3";
 import { XMLParser } from "fast-xml-parser";
-import { FulaError } from "../weber-profile-exception/WeberProfileError";
+import { OORTError } from "../weber-profile-exception/WeberProfileError";
 import { Logger } from "../weber-profile-utilities/Logger";
-export class FULAStorageClient {
-  constructor(key, bucket) {
+export class OORTStorageClient {
+  constructor(accessKey, secretKey, bucket) {
     this.client = new S3Client({
       endpoint: "https://s3.cloud.fx.land",
       region: "us-east-1",
       credentials: {
-        accessKeyId: `JWT:${key}`,
-        secretAccessKey: "not-used",
+        accessKeyId: accessKey,
+        secretAccessKey: secretKey,
       },
       forcePathStyle: true,
     });
@@ -22,7 +22,7 @@ export class FULAStorageClient {
   }
   async getObject(key) {
     const command = new GetObjectCommand({ Bucket: this.bucket, Key: key });
-    const res = await this.FULA(command);
+    const res = await this.OORT(command);
     const text = await res.Body.transformToString();
     return JSON.parse(text);
   }
@@ -34,7 +34,7 @@ export class FULAStorageClient {
       Body: JSON.stringify(dataObject),
       ContentType: "application/json",
     });
-    return await this.FULA(command);
+    return await this.OORT(command);
   }
 
   async deleteObject(key) {
@@ -42,10 +42,10 @@ export class FULAStorageClient {
       Bucket: this.bucket,
       Key: key,
     });
-    const result = await this.FULA(command);
+    const result = await this.OORT(command);
     return { ...result, key };
   }
-  async FULA(command) {
+  async OORT(command) {
     try {
       const res = await this.client.send(command);
       return res;
@@ -57,8 +57,8 @@ export class FULAStorageClient {
       if (code) {
         const message = this.#getFriendlyMessage(code, operation, key);
         Logger.throw(
-          new FulaError(message, error, code, status),
-          "FULAStorageClient.FULA",
+          new OORTError(message, error, code, status),
+          "OORTStorageClient.OORT",
           { key, code },
         );
       }
@@ -73,19 +73,19 @@ export class FULAStorageClient {
           parsedKey,
         );
         Logger.throw(
-          new FulaError(message, parsed.Error, parsedCode, status),
-          "FULAStorageClient.FULA",
+          new OORTError(message, parsed.Error, parsedCode, status),
+          "OORTStorageClient.OORT",
           { key: parsedKey, code: parsedCode },
         );
       }
       Logger.throw(
-        new FulaError(
+        new OORTError(
           `${operation} failed: ${error.message}`,
           error,
           "NetworkFailure",
           status,
         ),
-        "FULAStorageClient.FULA",
+        "OORTStorageClient.OORT",
         { command: operation },
       );
     }

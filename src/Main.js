@@ -1,4 +1,4 @@
-import { FULAStorageClient } from "./weber-profile-client/FULAStorageClient";
+import { OORTStorageClient } from "./weber-profile-client/OORTStorageClient";
 import { ProjectController } from "./weber-profile-controller/ProjectController";
 import { RateLimitController } from "./weber-profile-controller/RateLimitController";
 import { ProjectRepository } from "./weber-profile-repository/ProjectRepository";
@@ -10,8 +10,9 @@ import { Logger } from "./weber-profile-utilities/Logger";
 export class Main {
   constructor(env) {
     Logger.setup();
-    this.#oort = new FULAStorageClient(
-      env.FULA_JWT,
+    this.#oort = new OORTStorageClient(
+      env.OORT_ACCESS_KEY,
+      env.OORT_SECRET_KEY,
       env.OORT_BUCKET_2,
     );
     this.projectController = this.#buildProjectController();

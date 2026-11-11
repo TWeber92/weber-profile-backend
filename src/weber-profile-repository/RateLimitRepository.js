@@ -12,7 +12,7 @@ export class RateLimitRepository {
     try {
       return await this.#oort.getObject(this.#key(ip));
     } catch (error) {
-      if (error.code === "NoSuchKey") return { requests: [] };
+      if (error.code === "NoSuchObjectStat") return { requests: [] };
       throw error;
     }
   }

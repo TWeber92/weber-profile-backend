@@ -68,10 +68,10 @@ export class RateLimitError extends WeberProfileError {
     )
   }
 }
-export class FulaError extends WeberProfileError {
+export class OORTError extends WeberProfileError {
   constructor(message, originalError, code, status) {
     super(
-      `FULA operation failed: ${message}`,
+      `OORT operation failed: ${message}`,
       code,
       { originalError: originalError.Resource },
       status,
