@@ -15,6 +15,8 @@ export class ProjectService {
         new ParameterError("projectName is required."),
         "ProjectService.getProfileProjectByName",
       );
+      console.log(projectName);
+      
     const key = `schemas/${projectName}`;
     return await this.#repo.getSchema(key);
   }
