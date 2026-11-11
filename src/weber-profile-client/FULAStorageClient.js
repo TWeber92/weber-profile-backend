@@ -76,7 +76,7 @@ export class FULAStorageClient {
         );
         Logger.throw(
           new FulaError(message, parsed.Error, parsedCode, status),
-          "OORTStorageClient.OORT",
+          "FULAStorageClient.FULA",
           { key: parsedKey, code: parsedCode },
         );
       }
@@ -87,7 +87,7 @@ export class FULAStorageClient {
           "NetworkFailure",
           status,
         ),
-        "OORTStorageClient.OORT",
+        "FULAStorageClient.FULA",
         { command: operation },
       );
     }

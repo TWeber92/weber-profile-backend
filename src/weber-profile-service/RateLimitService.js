@@ -11,7 +11,8 @@ export class RateLimitService {
     const windowMs = 60 * 1000;
     const limit = 20;
     const record = await this.#repo.getRecord(ip);
-    record.requests = record.requests.filter((t) => now - t < windowMs);
+    if (record)
+      record.requests = record.requests.filter((t) => now - t < windowMs);
     if (record.requests.length >= limit)
       Logger.throw(
         new RateLimitError("Too many requests. Try again later."),
