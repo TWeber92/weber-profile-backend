@@ -64,10 +64,10 @@ The Worker includes a `RateLimitController` and `RateLimitRepository` to prevent
 |---|---|---|
 | `GET` | `/api/v1/project?projectName=<name>` | Fetch the current schema JSON for a project from OORT. |
 | `PUT` | `/api/v1/project` | Reads live data from Postgres, writes the updated schema to OORT. (Idempotent) |
-| `POST` | `/api/v1/project` | Accepts a schema payload, writes it directly to OORT. |
+| `POST` | `/api/v1/project` | Accepts a schema payload, writes it directly to OORT, Authenticated Basic 64. |
 | `PUT` | `/api/v1/reset` | Drops and recreates the database tables, then re-syncs the OORT schemas. |
 
-*(Note: The PUT `/api/v1/project` endpoint is intentionally unauthenticated because it is idempotent — calling it repeatedly will never change the state, it only syncs the cache).*
+*(Note: The PUT `/api/v1/project` endpoint is unauthenticated because it is idempotent — it can only refresh an existing schema object at a fixed pointer — it cannot create, delete, or enumerate. Repeated calls converge to the same state).*
 
 ---
 
