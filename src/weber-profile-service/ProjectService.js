@@ -15,7 +15,7 @@ export class ProjectService {
         new ParameterError("projectName is required."),
         "ProjectService.getProfileProjectByName",
       );
-    const key = `schemas/${projectName}.json`;
+    const key = `schemas/${projectName}`;
     return await this.#repo.getSchema(key);
   }
   async postProfileProject(projectName, schemaData) {
@@ -24,12 +24,12 @@ export class ProjectService {
         new ParameterError("projectName and tables are required."),
         "ProjectService.postProfileProject",
       );
-    const key = `schemas/${projectName}.json`;
+    const key = `schemas/${projectName}`;
     await this.#repo.putSchema(key, schemaData);
   }
 
   async putProfileProject(projectName, tables) {
-    const key = `schemas/${projectName}.json`;
+    const key = `schemas/${projectName}`;
     const wrapped = Project.from(tables);
     console.log(wrapped);
     console.log("typeof wrapped:", typeof wrapped);
