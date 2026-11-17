@@ -29,6 +29,7 @@ export class OORTStorageClient {
 
   async putObject(key, dataObject) {
     console.log(key, dataObject);
+    console.log(this.bucket);
     
     const command = new PutObjectCommand({
       Bucket: this.bucket,
