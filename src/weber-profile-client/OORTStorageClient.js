@@ -13,7 +13,7 @@ export class OORTStorageClient {
       endpoint: "https://s3.cloud.fx.land",
       region: "us-east-1",
       credentials: {
-        accessKeyId: `JWT: ${accessKey}`,
+        accessKeyId: `JWT:${accessKey}`,
         secretAccessKey: "not-used",
       },
       forcePathStyle: true,
@@ -30,7 +30,7 @@ export class OORTStorageClient {
   async putObject(key, dataObject) {
     console.log(key, dataObject);
     console.log(this.bucket);
-    
+
     const command = new PutObjectCommand({
       Bucket: this.bucket,
       Key: key,
